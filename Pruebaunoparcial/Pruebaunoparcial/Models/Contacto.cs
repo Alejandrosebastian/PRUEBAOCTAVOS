@@ -7,6 +7,7 @@ namespace Pruebaunoparcial.Models
 {
     public class Contacto
     {
+        public int ContactoId { get; set; }
         [Required(ErrorMessage = "Campo Requerido")]
         public DateTime Fecha { get; set; }
         [Required(ErrorMessage = "Campo Requerido")]
@@ -15,6 +16,11 @@ namespace Pruebaunoparcial.Models
         [Required(ErrorMessage = "Campo Requerido")]
         [StringLength(10, MinimumLength = 0, ErrorMessage = "la cedula solo tiene 10 caracter")]
         public string Observacion { get; set; }
+        public int EmpleadoId { get; set; }
+        public Empleado Empleado { get; set; }
+
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
 
     }
 }

@@ -23,6 +23,9 @@ namespace Pruebaunoparcial.Data
             // Add your customizations after calling base.OnModelCreating(builder);
         }
 
+<<<<<<< HEAD
+        public DbSet<Pruebaunoparcial.Models.Estudio> Estudio { get; set; }
+=======
         public DbSet<Pruebaunoparcial.Models.Contrato> Contrato { get; set; }
 
         public DbSet<Pruebaunoparcial.Models.Empleo> Empleo { get; set; }
@@ -31,10 +34,14 @@ namespace Pruebaunoparcial.Data
 
         public DbSet<Pruebaunoparcial.Models.Usu_empleado> Usu_empleado { get; set; }
 
-<<<<<<< HEAD
+        public DbSet<Pruebaunoparcial.Models.Contacto> Contacto { get; set; }
+
+        public DbSet<Pruebaunoparcial.Models.Empleado> Empleado { get; set; }
+
         public DbSet<Pruebaunoparcial.Models.Curso> Curso { get; set; }
-=======
+
         public DbSet<Pruebaunoparcial.Models.Usu_estudio> Usu_estudio { get; set; }
->>>>>>> 72644a9685214b38c6b6c2ffbccffb582057cdac
+
+>>>>>>> 0bfae170df59393b50bb833db7cbb366dd40434c
     }
 }
