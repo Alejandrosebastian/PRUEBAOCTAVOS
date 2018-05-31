@@ -8,13 +8,13 @@ namespace Pruebaunoparcial.Models
 {
     public class UsuarioModel
     {
-        private ApplicationDbContext _contexto;
+         private ApplicationDbContext _contexto;
         public UsuarioModel(ApplicationDbContext contexto)
         {
             _contexto = contexto;
         }
         //GUARDAR
-        public List<IdentityError> ModelGrabarSexo(string nombre, string apellido, DateTime fecha_nacimiento, string sexo, string nacionalidad,
+        public List<IdentityError> ModelGrabarUsuario(string nombre, string apellido, DateTime fecha_nacimiento, string sexo, string nacionalidad,
          DateTime fecha_alta, string direccion, string email, string telefono, string estado_civil, int numero_hijos,
         int numero_seguridad_social, string tipo, string porcentaje, string identificacion, string n_identificacion,
         string permiso_trabajo, string permiso_recidencia, string empadronado, string tipo_licencia)
@@ -25,7 +25,6 @@ namespace Pruebaunoparcial.Models
             {
                 Nombre = nombre,
                 Apellido = apellido,
-
                 Fecha_Nacimiento = fecha_nacimiento,
                 Sexo = sexo,
                 Nacionalidad = nacionalidad,
@@ -69,7 +68,6 @@ namespace Pruebaunoparcial.Models
             string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
-
                             join ud in _contexto.Usuario_discapacidad on u.UsuarioId equals ud.UsuarioId
                             join d in _contexto.Discapacidad on ud.DiscapacidadId equals d.DiscapacidadId
                             select new
@@ -130,7 +128,7 @@ namespace Pruebaunoparcial.Models
             return ListaUsuarios;
         }
         ///EDITAR
-        public List<IdentityError> ModeloEditarUsuario(string nombre, string apellido,DateTime fecha_nacimiento,string sexo,string nacionalidad,
+        public List<IdentityError> ModeloEditarUsuario(int usuarioId ,string nombre, string apellido,DateTime fecha_nacimiento,string sexo,string nacionalidad,
          DateTime fecha_alta, string direccion,string  email,string telefono,string estado_civil,int numero_hijos,
         int numero_seguridad_social, string tipo,string porcentaje,string identificacion,string n_identificacion,
         string permiso_trabajo,string permiso_recidencia,string empadronado,string tipo_licencia)
@@ -139,9 +137,9 @@ namespace Pruebaunoparcial.Models
             IdentityError regresa = new IdentityError();
             var usuario = new Usuario
             {
-                                Nombre = nombre,
+                UsuarioId=usuarioId,
+                Nombre = nombre,
                 Apellido = apellido,
-                
                 Fecha_Nacimiento = fecha_nacimiento,
                 Sexo = sexo,
                 Nacionalidad = nacionalidad,
