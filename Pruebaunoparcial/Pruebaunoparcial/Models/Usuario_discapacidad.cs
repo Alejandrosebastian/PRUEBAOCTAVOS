@@ -9,6 +9,7 @@ namespace Pruebaunoparcial.Models
     
     {
         public int Usuario_discapacidadId { get; set; }
+        public string Porcentaje { get; set; }
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
         public int DiscapacidadId { get; set; }

@@ -18,7 +18,35 @@ namespace Pruebaunoparcial.Models
             string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
+<<<<<<< HEAD
                             join ud in _contexto);
+=======
+                            join ud in _contexto.Usuario_discapacidad on u.UsuarioId equals ud.UsuarioId
+                            join d in _contexto.Discapacidad on ud.DiscapacidadId equals d.DiscapacidadId
+                            select new
+                            {
+                                u.Nombre,
+                                u.Apellido,
+                                u.Fecha_Nacimiento,
+                                u.Sexo,
+                                u.Nacionalidad,
+                                u.Fecha_Alta,
+                                u.Direccion,
+                                u.Email,
+                                u.Telefono,
+                                u.EstadoCivil,
+                                u.NumeroHijos,
+                                u.NumeroSeguridadSocial,
+                                d.Tipo,
+                                ud.Porcentaje,
+                                u.Identificacion,
+                                u.N_Identificacion,
+                                u.Permiso_Trabajo,
+                                u.Permiso_Recidencia,
+                                u.Empadronado,
+                                u.Tipo_Licencia
+                            }).OrderBy(u=> u.Nombre).ToList();
+>>>>>>> 9837589d1cc7968837ada786f9d85570d78722f3
             foreach (var item in usuarios)
             {
                 resultado += "<tr>"+
@@ -34,7 +62,7 @@ namespace Pruebaunoparcial.Models
                        "<td>" + item.EstadoCivil + "</td>" +
                        "<td>" + item.NumeroHijos + "</td>" +
                        "<td>" + item.NumeroSeguridadSocial + "</td>" +
-                       "<td>" + item.Minusvalido + "</td>" +
+                      "<td>" + item.Tipo + "</td>" +
                        "<td>" + item.Porcentaje + "</td>" +
                        "<td>" + item.Identificacion + "</td>" +
                        "<td>" + item.N_Identificacion + "</td>" +
@@ -43,12 +71,9 @@ namespace Pruebaunoparcial.Models
                        "<td>" + item.Empadronado + "</td>" +
                        "<td>" + item.Tipo_Licencia + "</td>" +
                     "<td>" +
-                    "<a class='btn btn-success'" +
-                    "data-toggle='modal'" +
-                    "data-target='#IngresoSexo'" +
-                    " onclick='cargasexo(" + item.UsuarioId + ")' >Editar</a>" +
-                    "<a class='btn btn-info'>Detalles</a>" +
-                    "<a class='btn btn-danger' onclick='eliminasexo(" + item.UsuarioId + ")'>Eliminar</a>" +
+                    "<a class= 'btn btn-success'> Editar </td> " +
+                    "<a class= 'btn btn-info'> Detalles </td>" +
+                    "<a class= 'btn btn-alert'> Eliminar </td>" +
                     "</td></tr>";
             }
             object[] dato = { resultado };
