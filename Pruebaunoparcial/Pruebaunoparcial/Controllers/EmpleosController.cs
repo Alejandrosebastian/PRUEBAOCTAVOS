@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pruebaunoparcial.Data;
 using Pruebaunoparcial.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pruebaunoparcial.Controllers
 {
     public class EmpleosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private EmpleosModel claseempleos;
 
         public EmpleosController(ApplicationDbContext context)
         {
@@ -24,130 +26,22 @@ namespace Pruebaunoparcial.Controllers
         {
             return View(await _context.Empleo.ToListAsync());
         }
-
-        // GET: Empleos/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGurdaempleo(string cargo, string empresa, DateTime fechaini, DateTime fechafin, string mediador)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empleo = await _context.Empleo
-                .SingleOrDefaultAsync(m => m.EmpleoId == id);
-            if (empleo == null)
-            {
-                return NotFound();
-            }
-
-            return View(empleo);
+            return claseempleos.listaempleo(cargo, empresa, fechaini, fechafin, mediador);
         }
-
-        // GET: Empleos/Create
-        public IActionResult Create()
+        public List<object[]> Controladorlistaempleos()
         {
-            return View();
+            return claseempleos.ModelolistaEmpleo();
         }
-
-        // POST: Empleos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpleoId,Cargo,Empresa,Fecha_ini,Fecha_fin,Mediador")] Empleo empleo)
+        public  List<IdentityError> ControladoreditaEmpleos(int id, string cargo, string empresa, DateTime fechaini, DateTime fechafin, string mediador)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(empleo);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(empleo);
+            return claseempleos.ModeloEditarEmpleo(cargo, empresa, fechaini, fechafin, mediador);
         }
-
-        // GET: Empleos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> Controladoreliminaempleos(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empleo = await _context.Empleo.SingleOrDefaultAsync(m => m.EmpleoId == id);
-            if (empleo == null)
-            {
-                return NotFound();
-            }
-            return View(empleo);
+            return claseempleos.ModeloEliminarempleo(id);S
         }
-
-        // POST: Empleos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EmpleoId,Cargo,Empresa,Fecha_ini,Fecha_fin,Mediador")] Empleo empleo)
-        {
-            if (id != empleo.EmpleoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(empleo);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EmpleoExists(empleo.EmpleoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(empleo);
-        }
-
-        // GET: Empleos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var empleo = await _context.Empleo
-                .SingleOrDefaultAsync(m => m.EmpleoId == id);
-            if (empleo == null)
-            {
-                return NotFound();
-            }
-
-            return View(empleo);
-        }
-
-        // POST: Empleos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var empleo = await _context.Empleo.SingleOrDefaultAsync(m => m.EmpleoId == id);
-            _context.Empleo.Remove(empleo);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool EmpleoExists(int id)
-        {
-            return _context.Empleo.Any(e => e.EmpleoId == id);
-        }
-    }
+        
+    }   
 }
