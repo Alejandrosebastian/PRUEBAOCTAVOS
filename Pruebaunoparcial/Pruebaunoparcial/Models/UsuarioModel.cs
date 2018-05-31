@@ -13,12 +13,67 @@ namespace Pruebaunoparcial.Models
         {
             _contexto = contexto;
         }
+        //GUARDAR
+        public List<IdentityError> ModelGrabarSexo(string nombre, string apellido, DateTime fecha_nacimiento, string sexo, string nacionalidad,
+         DateTime fecha_alta, string direccion, string email, string telefono, string estado_civil, int numero_hijos,
+        int numero_seguridad_social, string tipo, string porcentaje, string identificacion, string n_identificacion,
+        string permiso_trabajo, string permiso_recidencia, string empadronado, string tipo_licencia)
+        {
+            List<IdentityError> Lista = new List<IdentityError>();
+            IdentityError dato = new IdentityError();
+            var Objetousuario = new Usuario
+            {
+                Nombre = nombre,
+                Apellido = apellido,
+
+                Fecha_Nacimiento = fecha_nacimiento,
+                Sexo = sexo,
+                Nacionalidad = nacionalidad,
+                Fecha_Alta = fecha_alta,
+                Direccion = direccion,
+                Email = email,
+                Telefono = telefono,
+                EstadoCivil = estado_civil,
+                NumeroHijos = numero_hijos,
+                NumeroSeguridadSocial = numero_seguridad_social,
+                Identificacion = identificacion,
+                N_Identificacion = n_identificacion,
+                Permiso_Trabajo = permiso_trabajo,
+                Permiso_Recidencia = permiso_recidencia,
+                Empadronado = empadronado,
+                Tipo_Licencia = tipo_licencia
+            };
+            try
+            {
+                _contexto.Usuario.Add(Objetousuario);
+                _contexto.SaveChanges();
+                dato = new IdentityError
+                {
+                    Code = "Save",
+                    Description = "Save"
+                };
+            }
+            catch (Exception ex)
+            {
+                dato = new IdentityError
+                {
+                    Code = ex.Message,
+                    Description = ex.Message
+                };
+            }
+            Lista.Add(dato);
+            return Lista;
+        }
         public List<object[]> ModeloListaUsuarios()
         {
             string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
+<<<<<<< HEAD
+                                                     
+=======
 
+>>>>>>> 7988ed46b6fb06637cb15f9fc8d0711fed6dec3a
                             join ud in _contexto.Usuario_discapacidad on u.UsuarioId equals ud.UsuarioId
                             join d in _contexto.Discapacidad on ud.DiscapacidadId equals d.DiscapacidadId
                             select new
