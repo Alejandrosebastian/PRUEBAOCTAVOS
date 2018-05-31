@@ -19,8 +19,6 @@ namespace Pruebaunoparcial.Models
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
 
-                       
-
                             join ud in _contexto.Usuario_discapacidad on u.UsuarioId equals ud.UsuarioId
                             join d in _contexto.Discapacidad on ud.DiscapacidadId equals d.DiscapacidadId
                             select new
