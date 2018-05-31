@@ -14,7 +14,7 @@ namespace Pruebaunoparcial.Controllers
     public class DesempleadoesController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private DesempleadoesController claseDesempleado;
+        private DesempleadoModels claseDesempleado;
 
         public DesempleadoesController(ApplicationDbContext context)
         {
@@ -29,30 +29,30 @@ namespace Pruebaunoparcial.Controllers
         }
 
         
-        public List<IdentityError> ControladorGuardaSexo(string sexo)
+        public List<IdentityError> ControladorGuardaDesempleado(string tiempo,DateTime fecha_ini, DateTime fecha_fin)
         {
-            return claseSexo.ModeloGrabaSexo(sexo);
+            return claseDesempleado.ModeloGrabaDesempleo(tiempo,fecha_ini,fecha_fin);
         }
 
         public List<object[]> ControladorListaSexos()
         {
-            return claseSexo.ModeloListaSexos();
+            return claseDesempleado.ModeloListaDesempleado();
         }
-        public List<Sexo> ControladorUnSexo(int sexoId)
+        public List<Desempleado> ControladorUnDesempleado(int DesempleadoId)
         {
             //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
-            var sexo = (from s in _context.Sexos
-                        where s.SexoId == sexoId
+            var desempleado = (from s in _context.Desempleado
+                        where s.DesempleadoId == DesempleadoId
                         select s).ToList();
-            return sexo;
+            return desempleado;
         }
-        public List<IdentityError> ControladorEditaSexo(int id, string sexo)
+        public List<IdentityError> ControladorEditaDesempleado(int id, string tiempo,DateTime fecha_ini,DateTime fecha_fin)
         {
-            return claseSexo.ModeloEditarSexo(id, sexo);
+            return claseDesempleado.ModeloEditarDesempleado(id, tiempo,fecha_ini,fecha_fin);
         }
         public List<IdentityError> ControladorEliminarSexo(int id)
         {
-            return claseSexo.ModeloEliminarSexo(id);
+            return claseDesempleado.ModeloEliminarDesempleado(id);
         }
     }
 }
