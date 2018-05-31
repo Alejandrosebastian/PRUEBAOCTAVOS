@@ -15,12 +15,13 @@ namespace Pruebaunoparcial.Models
         }
         public List<object[]> ModeloListaUsuarios()
         {
-            string html = "";
+            string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
-            var resultado = _contexto.Usuario.ToList();
-            foreach (var item in resultado)
+            var usuarios = (from u in _contexto.Usuario
+                            join ud in _contexto.);
+            foreach (var item in usuarios)
             {
-                html += "<tr>"+
+                resultado += "<tr>"+
                        "<td>" + item.Nombre + "</td>" +
                        "<td>" + item.Apellido + "</td>" +
                        "<td>" + item.Fecha_Nacimiento + "</td>" +
@@ -33,6 +34,8 @@ namespace Pruebaunoparcial.Models
                        "<td>" + item.EstadoCivil + "</td>" +
                        "<td>" + item.NumeroHijos + "</td>" +
                        "<td>" + item.NumeroSeguridadSocial + "</td>" +
+                       "<td>" + item.Minusvalido + "</td>" +
+                       "<td>" + item.Porcentaje + "</td>" +
                        "<td>" + item.Identificacion + "</td>" +
                        "<td>" + item.N_Identificacion + "</td>" +
                        "<td>" + item.Permiso_Trabajo + "</td>" +
@@ -48,7 +51,7 @@ namespace Pruebaunoparcial.Models
                     "<a class='btn btn-danger' onclick='eliminasexo(" + item.UsuarioId + ")'>Eliminar</a>" +
                     "</td></tr>";
             }
-            object[] dato = { html };
+            object[] dato = { resultado };
             ListaUsuarios.Add(dato);
             return ListaUsuarios;
         }
