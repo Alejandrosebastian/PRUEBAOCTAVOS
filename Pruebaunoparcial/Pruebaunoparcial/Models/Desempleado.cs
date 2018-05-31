@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Pruebaunoparcial.Models
 {
-    public class Desempleadocs
+    public class Desempleado
     {
         public int DesempleadoId { get; set; }
         [Required(ErrorMessage = "Campo requerido")]
