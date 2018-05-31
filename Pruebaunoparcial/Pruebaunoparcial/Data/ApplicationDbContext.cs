@@ -26,7 +26,6 @@ namespace Pruebaunoparcial.Data
 
         public DbSet<Pruebaunoparcial.Models.Usuario> Usuario { get; set; }
 
-
         public DbSet<Pruebaunoparcial.Models.Estudio> Estudio { get; set; }
 
         public DbSet<Pruebaunoparcial.Models.Contrato> Contrato { get; set; }
