@@ -18,9 +18,6 @@ namespace Pruebaunoparcial.Models
             string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
-<<<<<<< HEAD
-                            join ud in _contexto);
-=======
                             join ud in _contexto.Usuario_discapacidad on u.UsuarioId equals ud.UsuarioId
                             join d in _contexto.Discapacidad on ud.DiscapacidadId equals d.DiscapacidadId
                             select new
@@ -46,7 +43,7 @@ namespace Pruebaunoparcial.Models
                                 u.Empadronado,
                                 u.Tipo_Licencia
                             }).OrderBy(u=> u.Nombre).ToList();
->>>>>>> 9837589d1cc7968837ada786f9d85570d78722f3
+
             foreach (var item in usuarios)
             {
                 resultado += "<tr>"+
