@@ -38,7 +38,7 @@ namespace Pruebaunoparcial.Controllers
         {
             return claseDesempleado.ModeloListaDesempleado();
         }
-        public List<Desempleado> ControladorUnSexo(int DesempleadoId)
+        public List<Desempleado> ControladorUnDesempleado(int DesempleadoId)
         {
             //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
             var desempleado = (from s in _context.Desempleado
@@ -46,13 +46,13 @@ namespace Pruebaunoparcial.Controllers
                         select s).ToList();
             return desempleado;
         }
-        public List<IdentityError> ControladorEditaSexo(int id, string sexo)
+        public List<IdentityError> ControladorEditaDesempleado(int id, string tiempo,DateTime fecha_ini,DateTime fecha_fin)
         {
-            return claseSexo.ModeloEditarSexo(id, sexo);
+            return claseDesempleado.ModeloEditarDesempleado(id, tiempo,fecha_ini,fecha_fin);
         }
         public List<IdentityError> ControladorEliminarSexo(int id)
         {
-            return claseSexo.ModeloEliminarSexo(id);
+            return claseDesempleado.ModeloEliminarDesempleado(id);
         }
     }
 }
