@@ -8,9 +8,12 @@ namespace Pruebaunoparcial.Models
     public class Usuario_discapacidad 
     
     {
-        public int UsuarioId { get; set; } 
-        public int DescapacidadId { get; set; }  
-        public string porcentaje { get; set; }
+        public int Usuario_discapacidadId { get; set; }
+        public int UsuarioId { get; set; }
+        public Usuario Usuario { get; set; }
+        public int DiscapacidadId { get; set; }
+        public Discapacidad Discapacidad { get; set; }
+
 
     }
 }
