@@ -1,16 +1,20 @@
 ﻿class ClaseDesempleado {
-    constructor(sexo, accion) {
-        this.sexo = sexo;
+    constructor(tiempo,fecha_ini,fecha_fin, accion) {
+        this.tiempo = tiempo;
+        this.fecha_fin = fecha_fin;
+        this.fecha_ini = fecha_ini;
         this.accion = accion;
     }
     GuardarSexo(id) {
-        var sexo = this.sexo;
+        var tiempo = this.tiempo;
+        var fecha_fin = this.fecha_fin;
+        var fecha_ini = this.fecha_ini;
         var accion = this.accion;
         if (id == '0') {
             $.ajax({
                 type: "POST",
                 url: accion,
-                data: { sexo },
+                data: { tiempo,fecha_ini,fecha_fin },
                 success: (respuesta) => {
                     if (respuesta[0].code == 'save') {
                         this.limpiarcajas();
@@ -21,7 +25,7 @@
             $.ajax({
                 type: "POST",
                 url: accion,
-                data: { id, sexo },
+                data: { id, tiempo, fecha_ini, fecha_fin },
                 success: (respuesta) => {
                     if (respuesta[0].code == 'save') {
                         this.limpiarcajas();
@@ -31,7 +35,7 @@
         }
     }
 
-    ListadeSexos() {
+    ListadeDesempleados() {
         var accion = this.accion;
         $.ajax({
             type: "POST",
@@ -39,21 +43,23 @@
             data: {},
             success: (respuesta) => {
                 $.each(respuesta, (index, val) => {
-                    $('#ListaSexo').html(val[0]);
+                    $('#ListaDesempleado').html(val[0]);
                 });
             }
         });
     }
-    CargarSexo(sexoId) {
+    CargarDesmpleado(DesempleadoId) {
         var accion = this.accion;
 
         $.post(
             accion,
-            { sexoId },
+            { DesempleadoId },
             (respuesta) => {
                 console.log(respuesta);
-                document.getElementById('sexo').value = respuesta[0].detalle;
-                document.getElementById('sexoId').value = respuesta[0].sexoId;
+                document.getElementById('tiempo').value = respuesta[0].tiempo;
+                document.getElementById('fecha_ini').value = respuesta[0].fecha_ini;
+                document.getElementById('feccha_fin').value = respuesta[0].tiempo;
+                document.getElementById('DesempleadoId').value = respuesta[0].DesempleadoId;
                 //localStorage.setItem("sexoId", JSON.respuesta[0].sexoId);
 
             }
@@ -61,7 +67,7 @@
 
 
     }
-    EliminarSexo(id) {
+    EliminarDesempleado(id) {
         var accion = this.accion;
         $.ajax({
             type: "POST",
@@ -76,10 +82,12 @@
     }
 
     limpiarcajas() {
-        document.getElementById('sexo').value = '';
-        document.getElementById('sexoId').value = '';
+        document.getElementById('tiempo').value = '';
+        document.getElementById('fecha_ini').value = '';
+        document.getElementById('fecha_fin').value = '';
+        document.getElementById('DesempleadoId').value = '';
         //$('#sexo').value = '';
-        $('#IngresoSexos').modal('hide');
+        $('#IngresoDesempleados').modal('hide');
         ListaSexo();
     }
 }
