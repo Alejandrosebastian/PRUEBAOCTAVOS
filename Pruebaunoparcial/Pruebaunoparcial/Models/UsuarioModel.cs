@@ -69,11 +69,7 @@ namespace Pruebaunoparcial.Models
             string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
-<<<<<<< HEAD
-                                                     
-=======
 
->>>>>>> 7988ed46b6fb06637cb15f9fc8d0711fed6dec3a
                             join ud in _contexto.Usuario_discapacidad on u.UsuarioId equals ud.UsuarioId
                             join d in _contexto.Discapacidad on ud.DiscapacidadId equals d.DiscapacidadId
                             select new
