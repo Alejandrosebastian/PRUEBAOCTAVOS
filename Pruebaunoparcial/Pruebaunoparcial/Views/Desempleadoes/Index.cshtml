@@ -1,55 +1,74 @@
-﻿@model IEnumerable<Pruebaunoparcial.Models.Desempleado>
-
-@{
-    Layout = null;
+﻿@{
+    ViewData["Title"] = "Desempleado";
 }
 
-<!DOCTYPE html>
+<h2>Lista de desempleados</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
-    <a asp-action="Create">Create New</a>
+    <a href="#" data-toggle="modal" data-target="#IngresoDesempleados">Ingrese Desemplado</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.tiempo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fecha_ini)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fecha_fin)
-                </th>
+            <th>
+                Tiempo
+            </th>
+            <th>
+                fecha de inicio
+            </th>
+            <th>
+                fecha de fin
+            </th>
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.tiempo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_ini)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.fecha_fin)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.DesempleadoId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.DesempleadoId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.DesempleadoId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
+    <tbody id="ListaDesempleado"></tbody>
 </table>
-</body>
-</html>
+
+
+
+
+
+
+
+<div class="modal fade" id="IngresoDesempleados" tabindex="-1"
+     role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Desempleados
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">tiempo</label>
+                        <input id="tiempo" name="tiempo" class="form-control" placeholder="ingrese el tiempo" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">fecha inicio</label>
+                        <input id="fecha_ini" name="fecha_fin" class="form-control" placeholder="ingrese el tiempo" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">fecha fin</label>
+                        <input id="fecha_fin" name="fecha_fin" class="form-control" placeholder="ingrese el tiempo" />
+                    </div>
+                    <input id="DesempleadoId" name="DesempleadoId" hidden />
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" data-toggle="tooltip"
+                        title="con este boton usted guradara un nuevo cliente" onclick="grabaDesmpleado()">
+                    Guardar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
