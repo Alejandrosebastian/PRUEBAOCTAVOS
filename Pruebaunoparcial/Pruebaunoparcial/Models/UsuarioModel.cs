@@ -78,5 +78,80 @@ namespace Pruebaunoparcial.Models
             ListaUsuarios.Add(dato);
             return ListaUsuarios;
         }
+        ///EDITAR
+        public List<IdentityError> ModeloEditarUsuario(string nombre, string apellido,DateTime fecha_nacimiento,string sexo,string nacionalidad,
+         DateTime fecha_alta, string direccion,string  email,string telefono,string estado_civil,int numero_hijos,
+        int numero_seguridad_social, string tipo,string porcentaje,string identificacion,string n_identificacion,
+        string permiso_trabajo,string permiso_recidencia,string empadronado,string tipo_licencia)
+        {
+            List<IdentityError> ListaEditar = new List<IdentityError>();
+            IdentityError regresa = new IdentityError();
+            var usuario = new Usuario
+            {
+                                Nombre = nombre,
+                Apellido = apellido,
+                
+                Fecha_Nacimiento = fecha_nacimiento,
+                Sexo = sexo,
+                Nacionalidad = nacionalidad,
+                Fecha_Alta = fecha_alta,
+                Direccion=direccion,
+                Email=email,
+                Telefono=telefono,
+                EstadoCivil=estado_civil,NumeroHijos =numero_hijos,
+                NumeroSeguridadSocial=numero_seguridad_social,
+                Identificacion=identificacion, N_Identificacion=n_identificacion,
+               Permiso_Trabajo=permiso_trabajo, Permiso_Recidencia=permiso_recidencia, Empadronado=empadronado, Tipo_Licencia=tipo_licencia
+            };
+            try
+            {
+                _contexto.Usuario.Update(usuario);
+                _contexto.SaveChanges();
+                regresa = new IdentityError
+                {
+                    Code = "save",
+                    Description = "save"
+                };
+            }catch (Exception ex)
+            {
+                regresa = new IdentityError
+                {
+                    Code = ex.Message,
+                    Description = ex.Message
+                };
+            }
+            ListaEditar.Add(regresa);
+            return ListaEditar ;
+        }
+        ///ELIMINAR
+        public List<IdentityError> ModeloeliminarUsuario(int usuarioid)
+        {
+            List<IdentityError> listaeliminar = new List<IdentityError>();
+            IdentityError dato = new IdentityError();
+            var usuario = new Usuario
+            {
+                UsuarioId = usuarioid
+            };
+            try
+            {
+                _contexto.Usuario.Remove(usuario);
+                _contexto.SaveChanges();
+                dato = new IdentityError
+                {
+                    Code = "Save",
+                    Description = "Save"
+                };
+            }
+            catch (Exception ex)
+            {
+                dato = new IdentityError
+                {
+                    Code = ex.Message,
+                    Description = ex.Message
+                };
+            }
+            listaeliminar.Add(dato);
+            return listaeliminar;
+        }
     }
 }

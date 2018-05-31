@@ -57,13 +57,19 @@ namespace Pruebaunoparcial.Models
             return listaresultado;
 
         }
-        public List<IdentityError> ModelograbarSeguimiento(string nombre)
+        public List<IdentityError> ModelograbarSeguimiento(string nombre, string apellido, int cedula, string direccion, int telefono, string email, string tipogabinete)
         {
             List<IdentityError> Lista = new List<IdentityError>();
             IdentityError dato = new IdentityError();
             var Objetoemple = new Empleado
             {
-                Nombre = nombre
+                Nombre = nombre,
+                Apellido = apellido,
+                Cedula = cedula,
+                Direccion = direccion,
+                Telefono = telefono,
+                Email=email,
+                Tipo_gabinete=tipogabinete
             };
             try
             {
