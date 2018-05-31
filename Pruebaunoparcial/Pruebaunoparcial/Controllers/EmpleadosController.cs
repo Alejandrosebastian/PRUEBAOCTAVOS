@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pruebaunoparcial.Data;
 using Pruebaunoparcial.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pruebaunoparcial.Controllers
 {
     public class EmpleadosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly empleadoModels claseepleado;
 
         public EmpleadosController(ApplicationDbContext context)
         {
@@ -23,6 +25,12 @@ namespace Pruebaunoparcial.Controllers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Empleado.ToListAsync());
+        }
+
+
+        public List<IdentityError> ControladorGuardaEmpleado(string nombre, string apellido, int cedula, string direccion, int telefono, string email, string tipogabinete)
+        {
+            return claseepleado.ModelograbarSeguimiento(nombre,  apellido,  cedula,  direccion, telefono,  email,  tipogabinete);
         }
 
         // GET: Empleadoes/Details/5
