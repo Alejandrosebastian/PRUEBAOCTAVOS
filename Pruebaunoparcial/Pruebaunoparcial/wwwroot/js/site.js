@@ -25,10 +25,10 @@ var grabaEstudio = () => {
     graba.GuardarEstudio(estudioId);
 }
 
-var ListaEstudios = () => {
+var ListaEstudio = () => {
     var accion = 'Estudio/ControladorListaEstudio';
     var estudio = new ClaseEstudio('', accion);
-    estudio.ListadeEstudios();
+    estudio.ListadeEstudio();
 }
 
 var CargaEstudio = (estudioId) => {
