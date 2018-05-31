@@ -10,22 +10,22 @@ using Pruebaunoparcial.Models;
 
 namespace Pruebaunoparcial.Controllers
 {
-    public class EstudiosController : Controller
+    public class UsuariosController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public EstudiosController(ApplicationDbContext context)
+        public UsuariosController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: Estudios
+        // GET: Usuarios
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Estudio.ToListAsync());
+            return View(await _context.Usuario.ToListAsync());
         }
 
-        // GET: Estudios/Details/5
+        // GET: Usuarios/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -33,39 +33,39 @@ namespace Pruebaunoparcial.Controllers
                 return NotFound();
             }
 
-            var estudio = await _context.Estudio
-                .SingleOrDefaultAsync(m => m.EstudioId == id);
-            if (estudio == null)
+            var usuario = await _context.Usuario
+                .SingleOrDefaultAsync(m => m.UsuarioId == id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return View(estudio);
+            return View(usuario);
         }
 
-        // GET: Estudios/Create
+        // GET: Usuarios/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Estudios/Create
+        // POST: Usuarios/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EstudioId,Detalle")] Estudio estudio)
+        public async Task<IActionResult> Create([Bind("UsuarioId,Nombre,Apellido,Fecha_Nacimiento,Sexo,Nacionalidad,Fecha_Alta,Direccion,Email,Telefono,EstadoCivil,NumeroHijos,NumeroSeguridadSocial,Identificacion,N_Identificacion,Permiso_Trabajo,Permiso_Recidencia,Empadronado,Tipo_Licencia")] Usuario usuario)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(estudio);
+                _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudio);
+            return View(usuario);
         }
 
-        // GET: Estudios/Edit/5
+        // GET: Usuarios/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -73,22 +73,22 @@ namespace Pruebaunoparcial.Controllers
                 return NotFound();
             }
 
-            var estudio = await _context.Estudio.SingleOrDefaultAsync(m => m.EstudioId == id);
-            if (estudio == null)
+            var usuario = await _context.Usuario.SingleOrDefaultAsync(m => m.UsuarioId == id);
+            if (usuario == null)
             {
                 return NotFound();
             }
-            return View(estudio);
+            return View(usuario);
         }
 
-        // POST: Estudios/Edit/5
+        // POST: Usuarios/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EstudioId,Detalle")] Estudio estudio)
+        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,Nombre,Apellido,Fecha_Nacimiento,Sexo,Nacionalidad,Fecha_Alta,Direccion,Email,Telefono,EstadoCivil,NumeroHijos,NumeroSeguridadSocial,Identificacion,N_Identificacion,Permiso_Trabajo,Permiso_Recidencia,Empadronado,Tipo_Licencia")] Usuario usuario)
         {
-            if (id != estudio.EstudioId)
+            if (id != usuario.UsuarioId)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Pruebaunoparcial.Controllers
             {
                 try
                 {
-                    _context.Update(estudio);
+                    _context.Update(usuario);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EstudioExists(estudio.EstudioId))
+                    if (!UsuarioExists(usuario.UsuarioId))
                     {
                         return NotFound();
                     }
@@ -113,10 +113,10 @@ namespace Pruebaunoparcial.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(estudio);
+            return View(usuario);
         }
 
-        // GET: Estudios/Delete/5
+        // GET: Usuarios/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -124,30 +124,30 @@ namespace Pruebaunoparcial.Controllers
                 return NotFound();
             }
 
-            var estudio = await _context.Estudio
-                .SingleOrDefaultAsync(m => m.EstudioId == id);
-            if (estudio == null)
+            var usuario = await _context.Usuario
+                .SingleOrDefaultAsync(m => m.UsuarioId == id);
+            if (usuario == null)
             {
                 return NotFound();
             }
 
-            return View(estudio);
+            return View(usuario);
         }
 
-        // POST: Estudios/Delete/5
+        // POST: Usuarios/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var estudio = await _context.Estudio.SingleOrDefaultAsync(m => m.EstudioId == id);
-            _context.Estudio.Remove(estudio);
+            var usuario = await _context.Usuario.SingleOrDefaultAsync(m => m.UsuarioId == id);
+            _context.Usuario.Remove(usuario);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EstudioExists(int id)
+        private bool UsuarioExists(int id)
         {
-            return _context.Estudio.Any(e => e.EstudioId == id);
+            return _context.Usuario.Any(e => e.UsuarioId == id);
         }
     }
 }
