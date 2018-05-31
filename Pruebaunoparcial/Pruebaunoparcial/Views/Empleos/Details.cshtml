@@ -1,0 +1,48 @@
+﻿@model Pruebaunoparcial.Models.Empleo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empleo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cargo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cargo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Empresa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Empresa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_ini)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_ini)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_fin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_fin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Mediador)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Mediador)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.EmpleoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

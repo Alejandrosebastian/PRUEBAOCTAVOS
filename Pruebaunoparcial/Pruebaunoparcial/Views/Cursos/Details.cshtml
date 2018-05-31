@@ -1,0 +1,51 @@
+﻿@model Pruebaunoparcial.Models.Curso
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+
+<div>
+    <h4>Curso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_ini)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fecha_ini)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_fin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_fin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.obsevacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.obsevacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.entidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.entidad)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CursoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</body>
+</html>

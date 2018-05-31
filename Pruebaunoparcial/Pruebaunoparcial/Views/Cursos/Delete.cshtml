@@ -1,0 +1,54 @@
+﻿@model Pruebaunoparcial.Models.Curso
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Curso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha_ini)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.fecha_ini)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_fin)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_fin)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.obsevacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.obsevacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.entidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.entidad)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="CursoId" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>
+</body>
+</html>
