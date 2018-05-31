@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Pruebaunoparcial.Models.Usuario_discapacidad>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Discapacidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Usuario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discapacidad.DiscapacidadId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Usuario.Apellido)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Usuario_discapacidadId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Usuario_discapacidadId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Usuario_discapacidadId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</body>
+</html>
