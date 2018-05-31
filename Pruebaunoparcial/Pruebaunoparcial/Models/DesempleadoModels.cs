@@ -60,17 +60,17 @@ namespace Pruebaunoparcial.Models
             {
                 html += "<tr>" +
                     "<td>" + item.tiempo + "</td>" +
-                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoSexos' onclick='CargaDesempleado(" + item.DesempleadoId + ")'>Editar</a>" +
+                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoDesempleados' onclick='CargaDesempleado(" + item.tiempo + ")'>Editar</a>" +
                     "<a class='btn btn-info' >Detalle</a>" +
-                    "<a class='btn btn-danger' onclick='eliminaSexo(" + item.tiempo + ")'>Eliminar</a>" +
+                    "<a class='btn btn-danger' onclick='eliminaSexo(" + item.DesempleadoId + ")'>Eliminar</a>" +
                     "<td>" + item.fecha_ini + "</td>" +
-                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoSexos' onclick='CargaDesempleado(" + item.DesempleadoId + ")'>Editar</a>" +
+                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoDesempleados' onclick='CargaDesempleado(" + item.fecha_ini + ")'>Editar</a>" +
                     "<a class='btn btn-info' >Detalle</a>" +
-                    "<a class='btn btn-danger' onclick='eliminaSexo(" + item.fecha_ini + ")'>Eliminar</a>" +
+                    "<a class='btn btn-danger' onclick='eliminaDesempleado(" + item.DesempleadoId + ")'>Eliminar</a>" +
                     "<td>" + item.fecha_fin + "</td>" +
-                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoSexos' onclick='CargaDesempleado(" + item.DesempleadoId + ")'>Editar</a>" +
+                    "<td>" + "<a class='btn btn-success' data-toggle='modal' data-target='#IngresoSexos' onclick='CargaDesempleado(" + item.fecha_fin + ")'>Editar</a>" +
                     "<a class='btn btn-info' >Detalle</a>" +
-                    "<a class='btn btn-danger' onclick='eliminaSexo(" + item.fecha_fin + ")'>Eliminar</a>" +
+                    "<a class='btn btn-danger' onclick='eliminaSexo(" + item.DesempleadoId + ")'>Eliminar</a>" +
                     "</td></tr>";
             }
             object[] dato = { html };
@@ -111,7 +111,7 @@ namespace Pruebaunoparcial.Models
             return ListaEditar;
         }
 
-        public List<IdentityError> ModeloEliminarSexo(int DesempleadoId)
+        public List<IdentityError> ModeloEliminarDesmpleado(int DesempleadoId)
         {
             List<IdentityError> ListaEliminar = new List<IdentityError>();
             IdentityError dato = new IdentityError();
