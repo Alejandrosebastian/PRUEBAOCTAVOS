@@ -30,5 +30,7 @@ namespace Pruebaunoparcial.Data
         public DbSet<Pruebaunoparcial.Models.Desempleado> Desempleado { get; set; }
 
         public DbSet<Pruebaunoparcial.Models.Usu_empleado> Usu_empleado { get; set; }
+
+        public DbSet<Pruebaunoparcial.Models.Curso> Curso { get; set; }
     }
 }
