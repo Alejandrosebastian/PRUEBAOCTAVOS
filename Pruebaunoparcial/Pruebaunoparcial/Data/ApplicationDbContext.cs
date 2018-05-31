@@ -24,6 +24,7 @@ namespace Pruebaunoparcial.Data
         }
 
 
+
         public DbSet<Pruebaunoparcial.Models.Usuario> Usuario { get; set; }       
 
 
