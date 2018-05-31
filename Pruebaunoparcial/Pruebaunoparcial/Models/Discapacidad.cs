@@ -7,7 +7,7 @@ namespace Pruebaunoparcial.Models
 {
     public class Discapacidad
     {
-        public int DescapacidadId { get; set; }
+        public int DiscapacidadId { get; set; }
         public string Tipo { get; set; }
     }
 }
