@@ -65,10 +65,10 @@ var grabaDiscapacidad = () => {
     graba.GuardarDiscapacidad(discapacidadId);
 }
 
-var ListaDiscapacidades = () => {
+var ListaDiscapacidad = () => {
     var accion = 'Discapacidad/ControladorListaDiscapacidad';
     var discapacidad = new ClaseDiscapacidad('', accion);
-    discapacidad.ListaDediscapacidades();
+    discapacidad.ListaDediscapacidad();
 }
 
 var CargaDiscapacidad = (discapacidadId) => {

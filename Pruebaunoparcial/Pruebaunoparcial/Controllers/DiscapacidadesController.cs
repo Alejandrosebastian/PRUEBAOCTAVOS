@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pruebaunoparcial.Data;
 using Pruebaunoparcial.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pruebaunoparcial.Controllers
 {
     public class DiscapacidadesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private DiscapacidadModel claseDiscapacidad;
 
         public DiscapacidadesController(ApplicationDbContext context)
         {
             _context = context;
+            claseDiscapacidad = new DiscapacidadModel(context);
+
         }
 
         // GET: Discapacidades
@@ -25,129 +29,32 @@ namespace Pruebaunoparcial.Controllers
             return View(await _context.Discapacidad.ToListAsync());
         }
 
-        // GET: Discapacidades/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardaDiscapacidad(string discapacidad)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var discapacidad = await _context.Discapacidad
-                .SingleOrDefaultAsync(m => m.DiscapacidadId == id);
-            if (discapacidad == null)
-            {
-                return NotFound();
-            }
-
-            return View(discapacidad);
+            return claseDiscapacidad.ModeloGrabaDiscapacidad(discapacidad);
         }
 
-        // GET: Discapacidades/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaDiscapacidad()
         {
-            return View();
+            return claseDiscapacidad.ModeloListaDiscapacidad();
         }
 
-        // POST: Discapacidades/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DiscapacidadId,Tipo")] Discapacidad discapacidad)
+        public List<IdentityError> ControladorEditaDiscapacidad(int id, string discapacidad)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(discapacidad);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(discapacidad);
+            return claseDiscapacidad.ModeloEditarDiscapacidad(id, discapacidad);
+        }
+        public List<Discapacidad> ControladorUnDiscapacidad(int discapacidadId)
+        {
+          
+            var discapacidad = (from s in _context.Discapacidad
+                        where s.DiscapacidadId == discapacidadId
+                        select s).ToList();
+            return discapacidad;
         }
 
-        // GET: Discapacidades/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEliminarDiscapacidad(int id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var discapacidad = await _context.Discapacidad.SingleOrDefaultAsync(m => m.DiscapacidadId == id);
-            if (discapacidad == null)
-            {
-                return NotFound();
-            }
-            return View(discapacidad);
-        }
-
-        // POST: Discapacidades/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DiscapacidadId,Tipo")] Discapacidad discapacidad)
-        {
-            if (id != discapacidad.DiscapacidadId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(discapacidad);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DiscapacidadExists(discapacidad.DiscapacidadId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(discapacidad);
-        }
-
-        // GET: Discapacidades/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var discapacidad = await _context.Discapacidad
-                .SingleOrDefaultAsync(m => m.DiscapacidadId == id);
-            if (discapacidad == null)
-            {
-                return NotFound();
-            }
-
-            return View(discapacidad);
-        }
-
-        // POST: Discapacidades/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var discapacidad = await _context.Discapacidad.SingleOrDefaultAsync(m => m.DiscapacidadId == id);
-            _context.Discapacidad.Remove(discapacidad);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool DiscapacidadExists(int id)
-        {
-            return _context.Discapacidad.Any(e => e.DiscapacidadId == id);
+            return claseDiscapacidad.ModeloEliminarDiscapacidad(id);
         }
     }
 }
