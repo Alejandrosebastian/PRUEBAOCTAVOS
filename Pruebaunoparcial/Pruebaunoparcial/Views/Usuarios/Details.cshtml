@@ -1,0 +1,126 @@
+﻿@model Pruebaunoparcial.Models.Usuario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Apellido)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Apellido)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Nacimiento)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Nacimiento)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sexo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Nacionalidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nacionalidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha_Alta)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha_Alta)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EstadoCivil)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EstadoCivil)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroHijos)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumeroHijos)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NumeroSeguridadSocial)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NumeroSeguridadSocial)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Identificacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Identificacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.N_Identificacion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.N_Identificacion)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Permiso_Trabajo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Permiso_Trabajo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Permiso_Recidencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Permiso_Recidencia)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Empadronado)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Empadronado)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo_Licencia)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipo_Licencia)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.UsuarioId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
