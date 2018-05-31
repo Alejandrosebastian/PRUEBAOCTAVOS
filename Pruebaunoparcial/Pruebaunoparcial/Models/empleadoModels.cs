@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Pruebaunoparcial.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pruebaunoparcial.Models
 {
     public class empleadoModels
     {
-        ApplicationDbContext _conjuntodedatos;
+        ApplicationDbContext _context;
 
-        public empleadoModels(ApplicationDbContext _context){
-            _conjuntodedatos = _context;
+        public empleadoModels(ApplicationDbContext contexto){
+            _context = contexto;
         }
 
         public List<object> listaseguimiento() {
             string resultado = "";
             List<object> listaresultado = new List<object>();
-            var seguimientos = (from m in _conjuntodedatos.Empleado
-                                join tm in _conjuntodedatos.Contacto on m.EmpleadoId equals tm.EmpleadoId
-                                join u in _conjuntodedatos.Usuario on tm.UsuarioId equals u.UsuarioId
+            var seguimientos = (from m in _context.Empleado
+                                join tm in _context.Contacto on m.EmpleadoId equals tm.EmpleadoId
+                                join u in _context.Usuario on tm.UsuarioId equals u.UsuarioId
                                 select new
                                 {
                                     tm.Fecha,
@@ -56,5 +57,43 @@ namespace Pruebaunoparcial.Models
             return listaresultado;
 
         }
+        public List<IdentityError> ModelograbarSeguimiento(string nombre, string apellido, int cedula, string direccion, int telefono, string email, string tipogabinete)
+        {
+            List<IdentityError> Lista = new List<IdentityError>();
+            IdentityError dato = new IdentityError();
+            var Objetoemple = new Empleado
+            {
+                Nombre = nombre,
+                Apellido = apellido,
+                Cedula = cedula,
+                Direccion = direccion,
+                Telefono = telefono,
+                Email=email,
+                Tipo_gabinete=tipogabinete
+            };
+            try
+            {
+                _context.Empleado.Add(Objetoemple);
+                _context.SaveChanges();
+                dato = new IdentityError
+                {
+                    Code = "Save",
+                    Description = "Save"
+                };
+            }
+            catch (Exception ex)
+            {
+                dato = new IdentityError
+                {
+                    Code = ex.Message,
+                    Description = ex.Message
+                };
+            }
+            Lista.Add(dato);
+            return Lista;
+        }
     }
+
+   
+
 }
