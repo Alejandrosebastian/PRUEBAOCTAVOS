@@ -91,3 +91,46 @@ var eliminaDiscapacidad = (id) => {
         alert('Usted cancelo la eliminacion del reguistro');
     }
 }
+$().ready(() => {
+    //mostrardatosjs();
+    // listaClientes(1,'null');
+    ListaDesempleado();
+});
+
+var grabaDesempleado = () => {
+    var tiempo = document.getElementById('tiempo').value;
+    var fecha_ini = document.getElementById('fecha_ini').vale;
+    var fecha_fin = document.getElementById('fecha_fin').vale;
+    var DesempleadoId = document.getElementById('DesempleadoId').value;
+
+
+    if (DesempleadoId == '') {
+        sexoId == 0;
+        var accion = 'Desempleado/ControladorGuardaDesempleado';
+    }
+    else {
+        var accion = 'Desempleado/ControladorEditaDesempleado';
+    }
+    var graba = new ClaseDesempleado(tiempo,fecha_ini,fecha_fin, accion);
+    graba.GuardarDesempleado(DesempleadoId);
+}
+
+var ListaSexo = () => {
+    var accion = 'Desempleado/ControladorListaDesempleados';
+    var Desempleado = new ClaseDesempleado('', accion);
+    Desempleado.ListadeDesempleados();
+}
+var CargaSexo = (sexoId) => {
+    var accion = 'Desempleado/ControladorUnDesempleado';
+    var unDesempleado = new ClaseDesempleado('', accion);
+    unDesempleado.CargarSexo(DesempleadoId);
+}
+var eliminaSexo = (id) => {
+    var accion = 'Sexos/ControladorEliminarDesempleado';
+    var eliminaDesempleado = new ClaseSexo('', accion);
+    var res = confirm('Desea eliminar el registro');
+    if (res == true) {
+        eliminasexo.EliminarDesempleado(id);
+        alert('registro eliminado');
+    } else { alert('usted canselo la elimnacion del registro'); }
+}
