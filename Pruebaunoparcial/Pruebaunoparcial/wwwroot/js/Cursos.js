@@ -57,12 +57,12 @@
         $.post(
             accion,
 
-            { sexoId },
+            { CursoId},
             (respuesta) => {
                 document.getElementById('curso').value
                     = respuesta[0].detalle;
                 document.getElementById('CursoId').value
-                    = respuesta[0].sexoId;
+                    = respuesta[0].CursoId;
             }
         );
     }
@@ -86,7 +86,7 @@
         document.getElementById('CursoId').value = '';
         $('#curso').value = '';
         $('#IngresoCurso').modal('hide');
-        ListaSexos();
+        ListaCursos();
 
     }
 
