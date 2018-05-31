@@ -31,10 +31,13 @@ namespace Pruebaunoparcial.Data
 
         public DbSet<Pruebaunoparcial.Models.Usu_empleado> Usu_empleado { get; set; }
 
-<<<<<<< HEAD
+        public DbSet<Pruebaunoparcial.Models.Contacto> Contacto { get; set; }
+
+        public DbSet<Pruebaunoparcial.Models.Empleado> Empleado { get; set; }
+
         public DbSet<Pruebaunoparcial.Models.Curso> Curso { get; set; }
-=======
+
         public DbSet<Pruebaunoparcial.Models.Usu_estudio> Usu_estudio { get; set; }
->>>>>>> 72644a9685214b38c6b6c2ffbccffb582057cdac
+
     }
 }
