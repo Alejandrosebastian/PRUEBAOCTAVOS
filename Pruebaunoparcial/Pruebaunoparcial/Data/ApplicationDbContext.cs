@@ -22,5 +22,13 @@ namespace Pruebaunoparcial.Data
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
         }
+
+        public DbSet<Pruebaunoparcial.Models.Contrato> Contrato { get; set; }
+
+        public DbSet<Pruebaunoparcial.Models.Empleo> Empleo { get; set; }
+
+        public DbSet<Pruebaunoparcial.Models.Desempleado> Desempleado { get; set; }
+
+        public DbSet<Pruebaunoparcial.Models.Usu_empleado> Usu_empleado { get; set; }
     }
 }
