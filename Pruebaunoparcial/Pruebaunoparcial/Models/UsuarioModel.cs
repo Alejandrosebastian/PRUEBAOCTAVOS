@@ -18,7 +18,7 @@ namespace Pruebaunoparcial.Models
             string resultado = "";
             List<object[]> ListaUsuarios = new List<object[]>();
             var usuarios = (from u in _contexto.Usuario
-                            join ud in _contexto.);
+                            join ud in _contexto);
             foreach (var item in usuarios)
             {
                 resultado += "<tr>"+
