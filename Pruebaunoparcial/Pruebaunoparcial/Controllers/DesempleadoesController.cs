@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pruebaunoparcial.Data;
 using Pruebaunoparcial.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pruebaunoparcial.Controllers
 {
     public class DesempleadoesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private DesempleadoesController claseDesempleado;
 
         public DesempleadoesController(ApplicationDbContext context)
         {
             _context = context;
+            claseDesempleado = new DesempleadoModels(context);
         }
 
         // GET: Desempleadoes
@@ -25,129 +28,31 @@ namespace Pruebaunoparcial.Controllers
             return View(await _context.Desempleado.ToListAsync());
         }
 
-        // GET: Desempleadoes/Details/5
-        public async Task<IActionResult> Details(int? id)
+        
+        public List<IdentityError> ControladorGuardaSexo(string sexo)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var desempleado = await _context.Desempleado
-                .SingleOrDefaultAsync(m => m.DesempleadoId == id);
-            if (desempleado == null)
-            {
-                return NotFound();
-            }
-
-            return View(desempleado);
+            return claseSexo.ModeloGrabaSexo(sexo);
         }
 
-        // GET: Desempleadoes/Create
-        public IActionResult Create()
+        public List<object[]> ControladorListaSexos()
         {
-            return View();
+            return claseSexo.ModeloListaSexos();
         }
-
-        // POST: Desempleadoes/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DesempleadoId,tiempo,fecha_ini,fecha_fin")] Desempleado desempleado)
+        public List<Sexo> ControladorUnSexo(int sexoId)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(desempleado);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(desempleado);
+            //var sexo = _context.Sexos.Where(s => s.SexoId == sexoId).ToList();
+            var sexo = (from s in _context.Sexos
+                        where s.SexoId == sexoId
+                        select s).ToList();
+            return sexo;
         }
-
-        // GET: Desempleadoes/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<IdentityError> ControladorEditaSexo(int id, string sexo)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var desempleado = await _context.Desempleado.SingleOrDefaultAsync(m => m.DesempleadoId == id);
-            if (desempleado == null)
-            {
-                return NotFound();
-            }
-            return View(desempleado);
+            return claseSexo.ModeloEditarSexo(id, sexo);
         }
-
-        // POST: Desempleadoes/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DesempleadoId,tiempo,fecha_ini,fecha_fin")] Desempleado desempleado)
+        public List<IdentityError> ControladorEliminarSexo(int id)
         {
-            if (id != desempleado.DesempleadoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(desempleado);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!DesempleadoExists(desempleado.DesempleadoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(desempleado);
-        }
-
-        // GET: Desempleadoes/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var desempleado = await _context.Desempleado
-                .SingleOrDefaultAsync(m => m.DesempleadoId == id);
-            if (desempleado == null)
-            {
-                return NotFound();
-            }
-
-            return View(desempleado);
-        }
-
-        // POST: Desempleadoes/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var desempleado = await _context.Desempleado.SingleOrDefaultAsync(m => m.DesempleadoId == id);
-            _context.Desempleado.Remove(desempleado);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool DesempleadoExists(int id)
-        {
-            return _context.Desempleado.Any(e => e.DesempleadoId == id);
+            return claseSexo.ModeloEliminarSexo(id);
         }
     }
 }
