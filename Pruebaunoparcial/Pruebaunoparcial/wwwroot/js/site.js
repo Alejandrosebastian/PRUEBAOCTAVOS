@@ -142,7 +142,7 @@ var grabaDesempleado = () => {
 
 
     if (DesempleadoId == '') {
-        sexoId == 0;
+        DesempleadoId == 0;
         var accion = 'Desempleado/ControladorGuardaDesempleado';
     }
     else {
