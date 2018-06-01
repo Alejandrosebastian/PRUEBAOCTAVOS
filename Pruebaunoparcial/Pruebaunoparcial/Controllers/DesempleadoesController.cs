@@ -50,7 +50,7 @@ namespace Pruebaunoparcial.Controllers
         {
             return claseDesempleado.ModeloEditarDesempleado(id, tiempo,fecha_ini,fecha_fin);
         }
-        public List<IdentityError> ControladorEliminarSexo(int id)
+        public List<IdentityError> ControladorEliminarDesempleado(int id)
         {
             return claseDesempleado.ModeloEliminarDesempleado(id);
         }
