@@ -243,4 +243,4 @@ var eliminausu = (usuid) => {
     }
 }
 
-//les queda 09 minutos hora actual 19:21
+//les queda 05 minutos hora actual 19:25
