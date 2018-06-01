@@ -221,6 +221,9 @@ var ListaUsuarios = () => {
 
 }
 
+
+
+
 var cargausuario = (usuarioid) => {
     var accion = 'ControladorunUsuario';
     var unusuario = new ClaseJSusuario('', accion);
@@ -240,3 +243,4 @@ var eliminausu = (usuid) => {
     }
 }
 
+//les queda 05 minutos hora actual 19:25
