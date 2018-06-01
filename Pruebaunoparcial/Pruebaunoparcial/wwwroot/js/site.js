@@ -91,3 +91,38 @@ var eliminaDiscapacidad = (id) => {
         alert('Usted cancelo la eliminacion del reguistro');
     }
 }
+
+var grabaempleos = () => {
+    var cargo = document.getElementById('Cargo').value;
+    var empresa = document.getElementById('Empresa').value;
+    var fechaini = document.getElementById('Fecha_ini').value;
+    var fechafin = document.getElementById('Fecha_fin').value;
+    var mediador = document.getElementsById('Mediador').value;
+    var emplosid = document.getElementsById('EmpleoId').value;
+    if (emplosid === '') {
+        emplosid = '0';
+        var accion = 'Empleos/ControladorGurdaempleo';
+    } else {
+        var accion = 'Empleos/ControladoreditaEmpleos'
+    }
+    var graba = new ClaseEmpleo(empleo, accion);
+    graba.Guardarempleo(emplosid);
+}
+
+var listaempleos =() => {
+    var accion = "Empleos/Controladorlistaempleos";
+    var empleo = new ClaseEmpleo('', accion);
+    empleo.listadeempleo();
+}
+
+var eliminaempleos = (id) => {
+    var accion = 'Empleos/Controladoreliminaempleos';
+    var eliminaempleo = new ClaseEmpleo('', accion);
+    var res = confirm('Desea eliminar el registro');
+    if (res == true) {
+        eliminaempleo.EliminaEmpleo(id);
+        alert('Registro eliminado');
+    } else {
+        alert('Usted cancelo la eliminacion del registro');
+    }
+}
