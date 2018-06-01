@@ -133,7 +133,7 @@ class ClaseJSusuario {
         document.getElementById('permiso_recidencia').value = respuesta[0].permiso_recidencia;
         document.getElementById('empadronado').value = respuesta[0].empadronado;
         document.getElementById('tipo_licencia').value = respuesta[0].tipo_licencia;
-                               document.getElementById('sexoId').value = respuesta[0].sexoId;
+                               document.getElementById('UsuarioId').value = respuesta[0].sexoId;
             }
 
         )
@@ -173,7 +173,7 @@ class ClaseJSusuario {
         document.getElementById('permiso_recidencia').value = '';
         document.getElementById('empadronado').value = '';
         document.getElementById('tipo_licencia').value = '';
-        document.getElementById('sexoId').value = '';
+        document.getElementById('UsuarioId').value = '';
         
         $('#nombre').value = '';
         $('#apellido').value = '';
