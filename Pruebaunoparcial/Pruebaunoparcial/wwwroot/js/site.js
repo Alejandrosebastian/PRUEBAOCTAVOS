@@ -221,6 +221,9 @@ var ListaUsuarios = () => {
 
 }
 
+
+
+
 var cargausuario = (usuarioid) => {
     var accion = 'ControladorunUsuario';
     var unusuario = new ClaseJSusuario('', accion);
