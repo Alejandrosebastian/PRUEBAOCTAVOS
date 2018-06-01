@@ -5,7 +5,7 @@
         this.fecha_ini = fecha_ini;
         this.accion = accion;
     }
-    GuardarSexo(id) {
+    GuardarDesempleado(id) {
         var tiempo = this.tiempo;
         var fecha_fin = this.fecha_fin;
         var fecha_ini = this.fecha_ini;

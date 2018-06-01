@@ -40,7 +40,7 @@ namespace Pruebaunoparcial.Controllers
         }
         public List<IdentityError> Controladoreliminaempleos(int id)
         {
-            return claseempleos.ModeloEliminarempleo(id);S
+            return claseempleos.ModeloEliminarempleo(id);
         }
         
     }   

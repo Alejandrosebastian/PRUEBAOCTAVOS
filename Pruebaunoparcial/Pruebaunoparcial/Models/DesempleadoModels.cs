@@ -111,7 +111,7 @@ namespace Pruebaunoparcial.Models
             return ListaEditar;
         }
 
-        public List<IdentityError> ModeloEliminarDesmpleado(int DesempleadoId)
+        public List<IdentityError> ModeloEliminarDesempleado(int DesempleadoId)
         {
             List<IdentityError> ListaEliminar = new List<IdentityError>();
             IdentityError dato = new IdentityError();

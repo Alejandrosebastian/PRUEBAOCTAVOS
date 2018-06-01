@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pruebaunoparcial.Data;
 using Pruebaunoparcial.Models;
-
+using Microsoft.AspNetCore.Identity;
 namespace Pruebaunoparcial.Controllers
 {
     public class UsuariosController : Controller
     {
         private readonly ApplicationDbContext _context;
-
+        private UsuarioModel claseUsuario;
         public UsuariosController(ApplicationDbContext context)
         {
             _context = context;
+            claseUsuario = new UsuarioModel(context);
         }
 
         // GET: Usuarios
@@ -24,130 +25,41 @@ namespace Pruebaunoparcial.Controllers
         {
             return View(await _context.Usuario.ToListAsync());
         }
-
-        // GET: Usuarios/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public List<IdentityError> ControladorGuardarUsuario(string nombre, string apellido, DateTime fecha_nacimiento, string sexo, string nacionalidad,
+         DateTime fecha_alta, string direccion, string email, string telefono, string estado_civil, int numero_hijos,
+        int numero_seguridad_social, string tipo, string porcentaje, string identificacion, string n_identificacion,
+        string permiso_trabajo, string permiso_recidencia, string empadronado, string tipo_licencia)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuario
-                .SingleOrDefaultAsync(m => m.UsuarioId == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
+            return claseUsuario.ModelGrabarUsuario( nombre,  apellido,fecha_nacimiento,  sexo,  nacionalidad,
+          fecha_alta,  direccion,  email, telefono,  estado_civil,  numero_hijos,
+         numero_seguridad_social,  tipo, porcentaje, identificacion,  n_identificacion,
+         permiso_trabajo,  permiso_recidencia, empadronado, tipo_licencia);
         }
 
-        // GET: Usuarios/Create
-        public IActionResult Create()
+        public List<object[]>Controladorlistausuario()
         {
-            return View();
+            return claseUsuario.ModeloListaUsuarios();
         }
-
-        // POST: Usuarios/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UsuarioId,Nombre,Apellido,Fecha_Nacimiento,Sexo,Nacionalidad,Fecha_Alta,Direccion,Email,Telefono,EstadoCivil,NumeroHijos,NumeroSeguridadSocial,Identificacion,N_Identificacion,Permiso_Trabajo,Permiso_Recidencia,Empadronado,Tipo_Licencia")] Usuario usuario)
+        public List<IdentityError> Controladoreditarusuario(int usuarioId, string nombre, string apellido, DateTime fecha_nacimiento, string sexo, string nacionalidad,
+         DateTime fecha_alta, string direccion, string email, string telefono, string estado_civil, int numero_hijos,
+        int numero_seguridad_social, string tipo, string porcentaje, string identificacion, string n_identificacion,
+        string permiso_trabajo, string permiso_recidencia, string empadronado, string tipo_licencia)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(usuario);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuario);
+         return claseUsuario.ModeloEditarUsuario(usuarioId, nombre, apellido, fecha_nacimiento, sexo, nacionalidad,
+         fecha_alta, direccion, email, telefono, estado_civil, numero_hijos,numero_seguridad_social, tipo, porcentaje,
+         identificacion, n_identificacion, permiso_trabajo, permiso_recidencia, empadronado, tipo_licencia);
         }
-
-        // GET: Usuarios/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public List<Usuario> ControladorunUsuario(int usuarioId)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuario.SingleOrDefaultAsync(m => m.UsuarioId == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-            return View(usuario);
+            var usuario = (from u in _context.Usuario
+                           where u.UsuarioId == usuarioId
+                           select u).ToList();
+            return usuario;
         }
-
-        // POST: Usuarios/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("UsuarioId,Nombre,Apellido,Fecha_Nacimiento,Sexo,Nacionalidad,Fecha_Alta,Direccion,Email,Telefono,EstadoCivil,NumeroHijos,NumeroSeguridadSocial,Identificacion,N_Identificacion,Permiso_Trabajo,Permiso_Recidencia,Empadronado,Tipo_Licencia")] Usuario usuario)
+        public List<IdentityError>ControladorEliminaUsuario(int usuarioId)
         {
-            if (id != usuario.UsuarioId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(usuario);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!UsuarioExists(usuario.UsuarioId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(usuario);
+            return claseUsuario.ModeloeliminarUsuario(usuarioId);
         }
-
-        // GET: Usuarios/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var usuario = await _context.Usuario
-                .SingleOrDefaultAsync(m => m.UsuarioId == id);
-            if (usuario == null)
-            {
-                return NotFound();
-            }
-
-            return View(usuario);
-        }
-
-        // POST: Usuarios/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var usuario = await _context.Usuario.SingleOrDefaultAsync(m => m.UsuarioId == id);
-            _context.Usuario.Remove(usuario);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool UsuarioExists(int id)
-        {
-            return _context.Usuario.Any(e => e.UsuarioId == id);
-        }
+       
     }
 }
