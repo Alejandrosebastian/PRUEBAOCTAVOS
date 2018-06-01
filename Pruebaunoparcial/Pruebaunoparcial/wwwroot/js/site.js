@@ -115,17 +115,17 @@ var grabaDesempleado = () => {
     graba.GuardarDesempleado(DesempleadoId);
 }
 
-var ListaSexo = () => {
+var ListaDesempleado = () => {
     var accion = 'Desempleado/ControladorListaDesempleados';
     var Desempleado = new ClaseDesempleado('', accion);
     Desempleado.ListadeDesempleados();
 }
-var CargaSexo = (sexoId) => {
+var CargaDesempleado = (DesempleadoId) => {
     var accion = 'Desempleado/ControladorUnDesempleado';
     var unDesempleado = new ClaseDesempleado('', accion);
-    unDesempleado.CargarSexo(DesempleadoId);
+    unDesempleado.CargarDesempleado(DesempleadoId);
 }
-var eliminaSexo = (id) => {
+var eliminaDesempleado = (id) => {
     var accion = 'Sexos/ControladorEliminarDesempleado';
     var eliminaDesempleado = new ClaseSexo('', accion);
     var res = confirm('Desea eliminar el registro');
