@@ -95,6 +95,7 @@ $().ready(() => {
     //mostrardatosjs();
     // listaClientes(1,'null');
     ListaDesempleado();
+    ListaUsuarios();
 });
 
 var grabaDesempleado = () => {
@@ -133,4 +134,70 @@ var eliminaSexo = (id) => {
         eliminasexo.EliminarDesempleado(id);
         alert('registro eliminado');
     } else { alert('usted canselo la elimnacion del registro'); }
+}
+
+
+//usuario
+var grabaUsuario = () => {
+
+   var nombre = document.getElementById('nombre').value;
+    var apellido= document.getElementById('apellido').value ;
+    var fecha_nacimiento = document.getElementById('fecha_nacimiento').value;
+    var sexo = document.getElementById('sexo').value ;
+    var nacionalidad = document.getElementById('nacionalidad').value;
+    var fecha_alta =  document.getElementById('fecha_alta').value;
+    var direccion =  document.getElementById('direccion').value ;
+    var email =  document.getElementById('email').value;
+    var telefono =  document.getElementById('telefono').value;
+    var estado_civil =  document.getElementById('estado_civil').value;
+    var numero_hijos =  document.getElementById('numero_hijos').value;
+    var numero_seguridad_social  =  document.getElementById('numero_seguridad_social').value;
+    var tipo =  document.getElementById('tipo').value;
+    var porcentaje = document.getElementById('porcentaje').value ;
+    var identificacion =  document.getElementById('identificacion').value;
+    var n_identificacion = document.getElementById('n_identificacion').value;
+    var permiso_trabajo = document.getElementById('permiso_trabajo').value;
+    var permiso_recidencia = document.getElementById('permiso_recidencia').value;
+    var empadronado = document.getElementById('empadronado').value ;
+    var tipo_licencia = document.getElementById('tipo_licencia').value;
+    var UsuarioId = document.getElementById('UsuarioId').value;
+     if (UsuarioId === '') {
+         UsuarioId = '0';
+         var accion = 'Usuarios/ControladorGuardarUsuario';
+    } else {
+
+         var accion = 'Usuarios/Controladoreditarusuario';
+    }
+    var graba = new ClaseJSusuario(nombre, apellido, fecha_nacimiento, sexo, nacionalidad,
+        fecha_alta, direccion, email, telefono, estado_civil, numero_hijos,
+        numero_seguridad_social, tipo, porcentaje, identificacion, n_identificacion,
+        permiso_trabajo, permiso_recidencia, empadronado, tipo_licencia, accion);
+        graba.GuardarUsuario(UsuarioId);
+}
+
+
+var ListaUsuarios = () => {
+    var accion = 'Usuarios/Controladorlistausuario';
+    var Usuario = new ClaseJSusuario('', accion);
+    Usuario.ListadeUsuarios();
+
+}
+
+var cargausuario = (usuarioid) => {
+    var accion = 'ControladorunUsuario';
+    var unusuario = new ClaseJSusuario('', accion);
+    unusuario.cargarusuario(usuarioid)
+}
+
+var eliminausu = (usuid) => {
+    var accion = 'Usuarios/ControladorEliminaUsuario';
+    var eliminarusu = new ClaseJSusuario('', accion);
+    var res = confirm('Desea eliminar el registro');
+    if (res == true) {
+        eliminarusu.eliminausu(usuid);
+        alert('Registro eliminado');
+    }
+    else {
+        alert('Usted cancelo la eliminacion del registro');
+    }
 }
