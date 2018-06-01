@@ -34,7 +34,7 @@ namespace Pruebaunoparcial.Controllers
             return claseDesempleado.ModeloGrabaDesempleo(tiempo,fecha_ini,fecha_fin);
         }
 
-        public List<object[]> ControladorListaSexos()
+        public List<object[]> ControladorListaDesempleados()
         {
             return claseDesempleado.ModeloListaDesempleado();
         }
