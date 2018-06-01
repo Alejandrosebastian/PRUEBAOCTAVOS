@@ -7,147 +7,30 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Pruebaunoparcial.Data;
 using Pruebaunoparcial.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Pruebaunoparcial.Controllers
 {
     public class CursosController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private CursoModel claseCurso;
 
         public CursosController(ApplicationDbContext context)
         {
             _context = context;
+            claseCurso = new CursoModel(context);
         }
-
-        // GET: Cursos
+        // GET: Estudios
         public async Task<IActionResult> Index()
         {
             return View(await _context.Curso.ToListAsync());
         }
 
-        // GET: Cursos/Details/5
-        public async Task<IActionResult> Details(int? id)
+
+        public List<object[]> ControladorListaCurso()
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var curso = await _context.Curso
-                .SingleOrDefaultAsync(m => m.CursoId == id);
-            if (curso == null)
-            {
-                return NotFound();
-            }
-
-            return View(curso);
-        }
-
-        // GET: Cursos/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Cursos/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CursoId,fecha_ini,Fecha_fin,obsevacion,entidad")] Curso curso)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(curso);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(curso);
-        }
-
-        // GET: Cursos/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var curso = await _context.Curso.SingleOrDefaultAsync(m => m.CursoId == id);
-            if (curso == null)
-            {
-                return NotFound();
-            }
-            return View(curso);
-        }
-
-        // POST: Cursos/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CursoId,fecha_ini,Fecha_fin,obsevacion,entidad")] Curso curso)
-        {
-            if (id != curso.CursoId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(curso);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CursoExists(curso.CursoId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(curso);
-        }
-
-        // GET: Cursos/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var curso = await _context.Curso
-                .SingleOrDefaultAsync(m => m.CursoId == id);
-            if (curso == null)
-            {
-                return NotFound();
-            }
-
-            return View(curso);
-        }
-
-        // POST: Cursos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var curso = await _context.Curso.SingleOrDefaultAsync(m => m.CursoId == id);
-            _context.Curso.Remove(curso);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CursoExists(int id)
-        {
-            return _context.Curso.Any(e => e.CursoId == id);
+            return claseCurso.ModeloListaCursos();
         }
     }
 }
