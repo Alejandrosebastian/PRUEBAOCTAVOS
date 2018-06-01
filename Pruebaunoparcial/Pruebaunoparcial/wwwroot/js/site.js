@@ -90,4 +90,49 @@ var eliminaDiscapacidad = (id) => {
     } else {
         alert('Usted cancelo la eliminacion del reguistro');
     }
+
+
+
+    var grabaCurso = () => {
+        var curso = document.getElementById("curso").value;
+        var CursoId = document.getElementById("CursoId").value;
+        if (CursoId == '') {
+            estudioId = '0';
+            var accion = 'Curso/ControladorGuardaCurso';
+        } else {
+            var accion = 'curso/ControladorEditaCurso';
+        }
+        var graba = new ClaseCurso(curso, accion);
+        graba.GuardarCurso(CursoId);
+    }
+
+    var ListaCurso = () => {
+        var accion = 'Curso/ControladorListaCurso';
+        var estudio = new ClaseEstudio('', accion);
+        estudio.ListaCurso();
+    }
+
+    var CargaCurso = (CursoId) => {
+        var accion = 'Curso/ControladorUnCurso';
+
+        var uncurso = new ClaseCurso('', accion);
+        unestudio.CargarEstudio(CursoId);
+    }
+
+    var eliminaCurso = (id) => {
+        var accion = 'Curso/ControladorEliminarCurso';
+        var eliminacurso = new ClaseCurso('', accion);
+        var res = confirm('Desea Eliminar el registro');
+
+        if (res == true) {
+            eliminacurso.EliminarCurso(id);
+            alert('Reguistro Eliminado');
+
+        } else {
+            alert('Usted cancelo la eliminacion del reguistro');
+        }
+    }
+
+
+} 
 }

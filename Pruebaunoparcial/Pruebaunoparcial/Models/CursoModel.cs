@@ -15,6 +15,8 @@ namespace Pruebaunoparcial.Models
         {
             _contexto = contexto;
         }
+        
+
         public List<object[]> ModeloListaCursos()
         {
             
